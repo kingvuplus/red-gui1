@@ -5,7 +5,9 @@ from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import eDVBDB, Misc_Options, eEnv
 from enigma import setTunerTypePriorityOrder, setPreferredTuner
 from SystemInfo import SystemInfo
+from Components.ServiceList import refreshServiceList
 import os
+from gettext import ngettext
 
 def InitUsageConfig():
 	config.usage = ConfigSubsection();
@@ -19,8 +21,21 @@ def InitUsageConfig():
     		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
+        choicelist = [("-1", _("Disable"))]
+	for i in range(0,1300,100):
+		choicelist.append((str(i), ngettext("%d pixel wide", "%d pixels wide", i) % i))
+	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
+	config.usage.servicelist_column.addNotifier(refreshServiceList)
+
 	config.usage.hide_number_markers = ConfigYesNo(default = False)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
+
+        config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
+	config.usage.crypto_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
+        config.usage.record_indicator_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename")), ("3", _("Red colored"))])
+	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = False)
@@ -31,9 +46,12 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = True)
+        config.usage.show_second_infobar = ConfigSelection(default = None, choices = [(None, _("None"))] + choicelist + [("EPG",_("EPG")), ("Event",_("Event view"))])
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 	config.usage.hide_zap_errors = ConfigYesNo(default = False)
 	config.usage.hide_ci_messages = ConfigYesNo(default = False)
+        config.usage.show_cryptoinfo = ConfigYesNo(default = True)
+        config.usage.pic_resolution = ConfigSelection(default = None, choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")])
 	config.usage.hdd_standby = ConfigSelection(default = "600", choices = [
 		("0", _("no standby")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
 		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
@@ -86,23 +104,32 @@ def InitUsageConfig():
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
-
+       
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
-		
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
+
+        config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'barright', choices = [
+		('barleft', _("Progress bar left")),
+		('barright', _("Progress bar right")),
+		('percleft', _("Percentage left")),
+		('percright', _("Percentage right")),
+		('no', _("No")) ])
+        config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
+	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
+	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
 	nims = [ ("-1", _("auto")) ]
 	for x in nimmanager.nim_slots:
 		nims.append( (str(x.slot), x.getSlotName()) )
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 
-	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
+        config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
-	
-	def TunerTypePriorityOrderChanged(configElement):
+
+        def TunerTypePriorityOrderChanged(configElement):
 		setTunerTypePriorityOrder(int(configElement.value))
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged, immediate_feedback=False)
 
