@@ -23,10 +23,10 @@ class About(Screen):
 		f.close()
 		
 
-		self["EnigmaVersion"] = StaticText("Firmware: " + bhVer + " " + bhRev)
+		self["EnigmaVersion"] = StaticText("Firmware: " + bhVer)
 #		self["ImageVersion"] = StaticText("Image: " + about.getImageVersionString())
 		
-		self["ImageVersion"] = StaticText("Build: " + about.getEnigmaVersionString())
+		self["ImageVersion"] = StaticText("Build: " + about.getEnigmaVersionString() + bhRev)
 		driverdate = self.getDriverInstalledDate()
 		if driverdate == "unknown":
 			driverdate = self.getDriverInstalledDate_proxy()
@@ -133,5 +133,3 @@ class About(Screen):
 			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
 		except:
 			return _("unknown")
-
-
