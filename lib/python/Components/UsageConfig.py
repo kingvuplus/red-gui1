@@ -165,6 +165,13 @@ def InitUsageConfig():
 		config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58", "60", "62", "64", "66", "68", "70", "72", "74", "76", "78", "80"], default = "54")
 	else:
 		config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54"], default = "34")
+		
+	if SystemInfo["ZapMode"]:
+		def setZapmode(el):
+			open(SystemInfo["ZapMode"], "w").write(el.value)
+		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
+			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
+		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)	
 	
 	subtitle_delay_choicelist = []
 	for i in range(-900000, 1845000, 45000):
