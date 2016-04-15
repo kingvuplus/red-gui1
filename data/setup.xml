@@ -22,6 +22,7 @@
 		</setup>
 		<setup key="usage" title="Customize">
 			<item level="0" text="Setup Mode">config.usage.setup_level</item>
+			<item level="1" text="Zap mode" requires="ZapMode" description="Configure the way in which the receiver changes channels.">config.misc.zapmode</item>
 			<item level="1" text="Recordings always have priority">config.recording.asktozap</item>
 			<item level="0" text="Margin before record (minutes)">config.recording.margin_before</item>
 			<item level="0" text="Margin after record">config.recording.margin_after</item>
