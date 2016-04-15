@@ -29,9 +29,12 @@
 			<item level="0" text="Show blinking clock in display during recording">config.usage.blinking_display_clock_during_recording</item>
 			<item level="2" text="Show Message when Recording starts">config.usage.show_message_when_recording_starts</item>
 			<item level="2" text="Load Length of Movies in Movielist">config.usage.load_length_of_movies_in_moviellist</item>
+	                <item level="2" text="Config resolution of pictures" description="configure in which resolution pictures are displayed with the picture viewer and movieplayer">config.usage.pic_resolution</item>
+                        <item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
 			<item level="1" text="Show positioner movement">config.usage.showdish</item>
 			<item level="1" text="Enable multiple bouquets">config.usage.multibouquet</item>
 			<item level="1" text="Multi-EPG bouquet selection">config.usage.multiepg_ask_bouquet</item>
+                        	<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
 			<item level="1" text="Hide number markers" description="When enabled, number markers will be hidden.">config.usage.hide_number_markers</item>
 			<item level="1" text="Change bouquets in quickzap">config.usage.quickzap_bouquet_change</item>
 			<item level="1" text="Alternative radio mode">config.usage.e1like_radio_mode</item>
@@ -44,12 +47,15 @@
 			<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown in the channel selection list.">config.usage.servicetype_icon_mode</item>
 			<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
 		        <item level="1" text="Show columns" description="Configure if and how wide columns will be shown in the channel selection list.">config.usage.servicelist_column</item>
+                        <item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item> 
 			<item level="0" text="Show event-progress in channel selection">config.usage.show_event_progress_in_servicelist</item>
 			<item level="2" text="Show infobar on channel change">config.usage.show_infobar_on_zap</item>
 			<item level="2" text="Show infobar on skip forward/backward">config.usage.show_infobar_on_skip</item>
 			<item level="2" text="Show infobar on event change">config.usage.show_infobar_on_event_change</item>
+                        <item level="2" text="Show second infobar" description="Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel.">config.usage.show_second_infobar</item>
 			<item level="2" text="Hide zap errors">config.usage.hide_zap_errors</item>
 			<item level="2" text="Hide CI messages">config.usage.hide_ci_messages</item>
+                        <item level="2" text="Show crypto info in infobar" description="When enabled, encryption info will be shown in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
 			<item level="2" text="Behavior when a movie is started">config.usage.on_movie_start</item>
 			<item level="2" text="Behavior when a movie is stopped">config.usage.on_movie_stop</item>
 			<item level="2" text="Behavior when a movie reaches the end">config.usage.on_movie_eof</item>
