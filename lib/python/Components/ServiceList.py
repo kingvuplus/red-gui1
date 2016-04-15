@@ -34,19 +34,19 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_s-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/ico_dvb_s-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_c-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/ico_dvb_c-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_dvb_t-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/ico_dvb_t-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_service_group-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/ico_service_group-fs8.png"))
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
@@ -81,10 +81,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
 				elif attrib == "colorEventProgressbarBorderSelected":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
-				elif attrib == "colorServiceDescription":
-					self.l.setColor(eListboxServiceContent.serviceDescriptionColor, parseColor(value))
-				elif attrib == "colorServiceDescriptionSelected":
-					self.l.setColor(eListboxServiceContent.serviceDescriptionColorSelected, parseColor(value))
+#				elif attrib == "colorServiceDescription":
+#					self.l.setColor(eListboxServiceContent.serviceDescriptionColor, parseColor(value))
+#				elif attrib == "colorServiceDescriptionSelected":
+#					self.l.setColor(eListboxServiceContent.serviceDescriptionColorSelected, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
 					pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
 					if pic:
